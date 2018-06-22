@@ -1,0 +1,13 @@
+<div id="search-component">
+
+  <input #inputfile type="file" (change)="onchange(inputfile.files, cat.value)">
+
+  <select #cat name="cat_id" (change)="onchange(inputfile.files, cat.value)"
+    [(ngModel)]="catId">
+    <option value="">Not Specified</option>
+    <option *ngFor="let category of allCategory" [value]="category.id">
+      {{category.id}}: {{category.name}}
+    </option>
+  </select>
+
+</div>

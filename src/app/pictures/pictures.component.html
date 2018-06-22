@@ -1,3 +1,7 @@
-<p>
-  pictures works!
-</p>
+
+<ul class="pictures">
+  <li *ngFor="let picture of pictures$ | async">
+    <!-- <img src="{{OSS_URL}}{{picture.picName}}"> -->
+    <span class="badge">{{picture.itemId}}</span> {{picture.picName}}
+  </li>
+</ul>
