@@ -1,0 +1,10 @@
+
+.select {
+  min-width: 200px;
+  margin: 30px;
+}
+
+.note {
+  color: gray;
+  margin: 30px;
+}

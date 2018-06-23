@@ -1,7 +1,8 @@
 
-<ul class="pictures">
-  <li *ngFor="let picture of pictures$ | async">
-    <!-- <img src="{{OSS_URL}}{{picture.picName}}"> -->
-    <span class="badge">{{picture.itemId}}</span> {{picture.picName}}
-  </li>
-</ul>
+<div class="flexContainer">
+  <div class="flexItem" *ngFor="let picture of pictures$ | async">
+    <img src="{{OSS_URL}}{{picture.picName}}" class="image">
+    {{picture.picName}}
+    <div>{{picture.sortExprValues}}</div>
+  </div>
+</div>

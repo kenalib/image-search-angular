@@ -17,7 +17,7 @@ let default_response = require('../default_response.json');
 export class ImageSearchService {
 
   // URL to web api
-  private imageSearchUrl = 'http://localhost:8080/image-search-webapp/search_picture';
+  private imageSearchUrl = 'http://47.74.213.82/image-search-webapp/search_picture';
 
   private picturesSubject = new Subject<Picture[]>();
   public pictures$ = this.picturesSubject.asObservable();
@@ -32,7 +32,7 @@ export class ImageSearchService {
 
   /** Log a ImageSearchService message with the MessageService */
   private log(message: string) {
-    this.messageService.add('ImageSearchService: ' + message);
+    this.messageService.add(message);
   }
 
   private logClear() {
