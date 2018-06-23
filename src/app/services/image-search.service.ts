@@ -8,7 +8,7 @@ import { SearchItemResponse } from '../models/search-item-response';
 import { MessageService } from './message.service';
 
 declare function require(url: string);
-let default_response = require('../default_response.json');
+const default_response = require('../default_response.json');
 
 
 @Injectable({

@@ -1,4 +1,11 @@
 
+.previewImgStyle {
+  max-width: 150px;
+  max-height: 100px;
+  margin: 20px;
+  vertical-align: middle;
+}
+
 .select {
   min-width: 200px;
   margin: 30px;
