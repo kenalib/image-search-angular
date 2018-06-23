@@ -7,7 +7,8 @@ import { Picture } from '../models/picture';
 import { SearchItemResponse } from '../models/search-item-response';
 import { MessageService } from './message.service';
 
-import { default as default_response } from '../default_response.json';
+declare function require(url: string);
+let default_response = require('../default_response.json');
 
 
 @Injectable({

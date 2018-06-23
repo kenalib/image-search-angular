@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ImageSearchService } from './image-search.service';
 
 describe('ImageSearchService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ImageSearchService]
+      providers: [ImageSearchService],
+      imports: [ HttpClientModule ]
     });
   });
 

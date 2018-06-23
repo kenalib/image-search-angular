@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ImageSearchService } from '../services/image-search.service';
-import { default as default_response } from '../default_response.json';
+
+declare function require(url: string);
+let default_response = require('../default_response.json');
 
 @Component({
   selector: 'app-image-search',

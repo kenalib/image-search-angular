@@ -1,6 +1,7 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-import { default as default_response } from './default_response.json';
+declare function require(url: string);
+let default_response = require('../default_response.json');
 
 export class InMemoryDataService implements InMemoryDbService {
 

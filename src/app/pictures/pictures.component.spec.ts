@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { PicturesComponent } from './pictures.component';
 
@@ -8,7 +9,12 @@ describe('PicturesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PicturesComponent ]
+      declarations: [
+        PicturesComponent
+      ],
+      imports: [
+        HttpClientModule
+      ]
     })
     .compileComponents();
   }));
