@@ -1,5 +1,9 @@
-<div *ngIf="messageService.messages.length" class="message">
+<div *ngIf="messageService.messages.length">
 
-  <div *ngFor='let message of messageService.messages'> {{message}} </div>
+  <mat-icon class="message">info</mat-icon>
+
+  <pre *ngFor='let message of messageService.messages'>
+    {{message}}
+  </pre>
 
 </div>

@@ -3,17 +3,25 @@
   <img src='{{previewImg}}' alt="" class="previewImgStyle"/>
   <br/>
 
-  <input #inputfile type="file" (change)="onchange(inputfile.files, cat.value)">
+  <button mat-raised-button style="display: none;">dummy</button>
 
-  <span class="select">
-    <select #cat name="cat_id" (change)="onchange(inputfile.files, cat.value)"
-      [(ngModel)]="catId">
-      <option value="">Not Specified</option>
-      <option *ngFor="let category of allCategory" [value]="category.id">
+  <input id="inputfile" hidden="true" #inputfile type="file" accept="image/*"
+    (change)="onchange(inputfile.files, cat.value)">
+  <label for="inputfile" class="mat-raised-button"
+    (dragover)="onDragOver($event)"
+    (drop)="onDrop($event, cat.value)">
+    Choose image
+  </label>
+
+  <mat-form-field class="select">
+    <mat-select placeholder="Category" #cat name="cat_id"
+      (change)="onchange(inputfile.files, cat.value)" [(ngModel)]="catId">
+      <mat-option value="">Not Specified</mat-option>
+      <mat-option *ngFor="let category of allCategory" [value]="category.id">
         {{category.id}}: {{category.name}}
-      </option>
-    </select>
-  </span>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <div class="note">
     note: demo data is in<br/>

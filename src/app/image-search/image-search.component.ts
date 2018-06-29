@@ -20,24 +20,41 @@ export class ImageSearchComponent implements OnInit {
     private imageSearchService: ImageSearchService
   ) { }
 
-  onchange(files: FileList, cat_id: string) {
-    if (files[0]) {
-      const reader  = new FileReader();
-
-      reader.onloadend = () => {
-        this.previewImg = reader.result;
-      };
-
-      reader.readAsDataURL(files[0]);
-    }
-    this.imageSearchService.postPictures(files, cat_id);
-  }
-
   ngOnInit(): void {
     this.imageSearchService.catId$.subscribe((_) => {
       this.catId = _;
     });
     this.catId = '';
+  }
+
+  onDragOver(event) {
+    event.preventDefault();
+  }
+
+  onDrop(event, cat_id: string) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    let files = event.dataTransfer.files;
+
+    this.onchange(files, cat_id);
+  }
+
+  onchange(files: FileList, cat_id: string) {
+    if (files.length > 0) {
+      this.readPreview(files[0]);
+    }
+    this.imageSearchService.postPictures(files, cat_id);
+  }
+
+  readPreview(file) {
+    const reader  = new FileReader();
+
+    reader.onloadend = () => {
+      this.previewImg = reader.result;
+    };
+
+    reader.readAsDataURL(file);
   }
 
 }

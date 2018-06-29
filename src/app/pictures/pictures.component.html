@@ -1,8 +1,12 @@
 
 <div class="flexContainer">
-  <div class="flexItem" *ngFor="let picture of pictures$ | async">
+  <mat-card class="flexItem" *ngFor="let picture of pictures$ | async">
     <img src="{{OSS_URL}}{{picture.picName}}" class="image">
-    {{picture.picName}}
-    <div>{{picture.sortExprValues}}</div>
-  </div>
+    <mat-card-title>
+      {{picture.picName}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{picture.sortExprValues}}
+    </mat-card-subtitle>
+  </mat-card>
 </div>
