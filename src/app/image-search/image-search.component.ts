@@ -35,7 +35,7 @@ export class ImageSearchComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
 
-    let files = event.dataTransfer.files;
+    const files = event.dataTransfer.files;
 
     this.onchange(files, cat_id);
   }

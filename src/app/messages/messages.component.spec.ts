@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 
 import { MessagesComponent } from './messages.component';
 
@@ -8,6 +9,9 @@ describe('MessagesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        MatIconModule,
+      ],
       declarations: [ MessagesComponent ]
     })
     .compileComponents();

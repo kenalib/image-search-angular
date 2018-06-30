@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSelectModule } from '@angular/material/select';
 
 import { ImageSearchComponent } from './image-search.component';
 
@@ -11,7 +13,12 @@ describe('ImageSearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ImageSearchComponent ],
-      imports: [ HttpClientModule, FormsModule ]
+      imports: [
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatSelectModule,
+      ]
     })
     .compileComponents();
   }));

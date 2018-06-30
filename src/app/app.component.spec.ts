@@ -1,6 +1,10 @@
 import { TestBed, async } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
 import { ImageSearchComponent } from './image-search/image-search.component';
@@ -17,6 +21,10 @@ describe('AppComponent', () => {
         ImageSearchComponent
       ],
       imports: [
+        BrowserAnimationsModule,
+        MatSelectModule,
+        MatCardModule,
+        MatIconModule,
         HttpClientModule,
         FormsModule
       ],

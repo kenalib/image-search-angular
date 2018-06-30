@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
 
 import { PicturesComponent } from './pictures.component';
 
@@ -13,6 +14,7 @@ describe('PicturesComponent', () => {
         PicturesComponent
       ],
       imports: [
+        MatCardModule,
         HttpClientModule
       ]
     })
