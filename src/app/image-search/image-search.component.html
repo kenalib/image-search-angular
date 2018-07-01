@@ -6,16 +6,16 @@
   <button mat-raised-button style="display: none;">dummy</button>
 
   <input id="inputfile" hidden="true" #inputfile type="file" accept="image/*"
-    (change)="onchange(inputfile.files, cat.value)">
+    (change)="onchange(inputfile.files)">
   <label for="inputfile" class="mat-raised-button"
     (dragover)="onDragOver($event)"
-    (drop)="onDrop($event, cat.value)">
+    (drop)="onDrop($event)">
     Choose image
   </label>
 
   <mat-form-field class="select">
-    <mat-select placeholder="Category" #cat name="cat_id"
-      (change)="onchange(inputfile.files, cat.value)" [(ngModel)]="catId">
+    <mat-select placeholder="Category"
+      (selectionChange)="onchange(inputfile.files)" [(ngModel)]="catId">
       <mat-option value="">Not Specified</mat-option>
       <mat-option *ngFor="let category of allCategory" [value]="category.id">
         {{category.id}}: {{category.name}}
@@ -27,5 +27,8 @@
     note: demo data is in<br/>
     1: Dress, 3: Bag, 4: Shoes
   </div>
+
+  <app-messages></app-messages>
+  <app-pictures [pictures$]="pictures$"></app-pictures>
 
 </div>

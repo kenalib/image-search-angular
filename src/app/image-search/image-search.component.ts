@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { ImageSearchService } from '../services/image-search.service';
+import { Picture } from '../models/picture';
 
 declare function require(url: string);
 const default_response = require('../default_response.json');
@@ -13,6 +16,8 @@ const default_response = require('../default_response.json');
 export class ImageSearchComponent implements OnInit {
 
   allCategory = default_response.SearchItemResponse.picInfo.allCategory;
+
+  pictures$: Observable<Picture[]>;
   catId: string;
   previewImg: string;
 
@@ -21,30 +26,39 @@ export class ImageSearchComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.imageSearchService.catId$.subscribe((_) => {
-      this.catId = _;
-    });
-    this.catId = '';
+    this.pictures$ = this.imageSearchService.getPictures();
   }
 
   onDragOver(event) {
     event.preventDefault();
   }
 
-  onDrop(event, cat_id: string) {
+  onDrop(event) {
     event.preventDefault();
     event.stopPropagation();
 
     const files = event.dataTransfer.files;
 
-    this.onchange(files, cat_id);
+    this.onchange(files);
   }
 
-  onchange(files: FileList, cat_id: string) {
+  onchange(files: FileList) {
     if (files.length > 0) {
       this.readPreview(files[0]);
     }
-    this.imageSearchService.postPictures(files, cat_id);
+
+    if (this.catId === undefined) {
+      this.catId = '';
+    }
+
+    this.pictures$ = this.imageSearchService.postPictures(files, this.catId)
+      .pipe(
+        tap(res => {
+          if (res.length > 0) {
+            this.catId = res[0].catId;
+          }
+        })
+      );
   }
 
   readPreview(file) {

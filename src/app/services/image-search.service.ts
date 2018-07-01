@@ -19,12 +19,6 @@ export class ImageSearchService {
   // URL to web api
   private imageSearchUrl = 'http://47.74.213.82/image-search-webapp/search_picture';
 
-  private picturesSubject = new Subject<Picture[]>();
-  public pictures$ = this.picturesSubject.asObservable();
-
-  private catIdSubject = new Subject<string>();
-  public catId$ = this.catIdSubject.asObservable();
-
   constructor(
     private http: HttpClient,
     private messageService: MessageService
@@ -39,13 +33,7 @@ export class ImageSearchService {
     this.messageService.clear();
   }
 
-  getPictures(): void {
-    this._getPictures().subscribe((pictures) => {
-      this.picturesSubject.next(pictures);
-    });
-  }
-
-  private _getPictures(): Observable<Picture[]> {
+  getPictures(): Observable<Picture[]> {
     return this.http.get<SearchItemResponse>(this.imageSearchUrl)
       .pipe(
         tap(response => {
@@ -62,16 +50,12 @@ export class ImageSearchService {
       );
   }
 
-  postPictures(files: FileList, cat_id: string): void {
+  /* select pictures from Image Search order by similality */
+  postPictures(files: FileList, cat_id: string): Observable<Picture[]> {
+    console.log('search file length: ' + files.length + 'category: ' + cat_id);
+
     this.logClear();
 
-    this._postPictures(files, cat_id).subscribe((pictures) => {
-      this.picturesSubject.next(pictures);
-    });
-  }
-
-  /* select pictures from Image Search order by similality */
-  private _postPictures(files: FileList, cat_id: string): Observable<Picture[]> {
     if (files.length <= 0) {
       // if not search picture, return empty picture array.
       this.log('empty request');
@@ -91,9 +75,8 @@ export class ImageSearchService {
             throw new Error(response.message);
           }
           if (cat_id !== response.picInfo.category) {
-            this.log('Category Auto Detedted.');
+            this.log('Category Auto Detected.');
           }
-          this.catIdSubject.next(response.picInfo.category);
         }),
         map(response => response.auctions),
         tap(_ => this.log(`found ${_.length} pictures matching "${file.name}"`)),
