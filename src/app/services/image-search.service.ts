@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Picture } from '../models/picture';
 import { SearchItemResponse } from '../models/search-item-response';
 import { MessageService } from './message.service';
+import { environment } from '../../environments/environment';
 
 declare function require(url: string);
 const default_response = require('../default_response.json');
@@ -17,7 +18,7 @@ const default_response = require('../default_response.json');
 export class ImageSearchService {
 
   // URL to web api
-  private imageSearchUrl = 'http://47.74.213.82/image-search-webapp/search_picture';
+  private imageSearchUrl = environment.image_search_url;
 
   constructor(
     private http: HttpClient,
@@ -52,7 +53,7 @@ export class ImageSearchService {
 
   /* select pictures from Image Search order by similality */
   postPictures(files: FileList, cat_id: string): Observable<Picture[]> {
-    console.log('search file length: ' + files.length + 'category: ' + cat_id);
+    console.log('search file: length: ' + files.length + ' category: ' + cat_id);
 
     this.logClear();
 

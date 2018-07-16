@@ -20,6 +20,7 @@ export class InMemoryDataService implements InMemoryDbService {
     //   { itemId: "19", catId: "3", custContent: "c1", "sortExprValues": "6.0", picName: 'Magma' },
     //   { itemId: "20", catId: "3", custContent: "c1", "sortExprValues": "6.0", picName: 'Tornado' }
     // ];
-    return default_response;
+    const pictures = default_response;
+    return {pictures};
   }
 }

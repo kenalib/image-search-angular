@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { By } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ImageSearchComponent } from './image-search/image-search.component';
@@ -42,8 +43,21 @@ describe('AppComponent', () => {
   }));
   it('should render title in a h1 tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
+    const comp = fixture.componentInstance;
+
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Image Search Demo');
+
+    fixture.detectChanges();
+    const de = fixture.debugElement.query(By.css('h1'));
+    const h1 = de.nativeElement;
+    expect(h1.innerText).toMatch(/Image Search Demo/);
+
+    comp.title = 'Javascript';
+    fixture.detectChanges();
+    const h1x = de.nativeElement;
+    expect(h1x.innerText).toMatch(/javascript/i);
+
   }));
 });
