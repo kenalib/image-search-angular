@@ -20,6 +20,7 @@ export class ImageSearchComponent implements OnInit {
   pictures$: Observable<Picture[]>;
   catId: string;
   previewImg: string;
+  currentFiles: FileList;
 
   constructor(
     private imageSearchService: ImageSearchService
@@ -45,6 +46,10 @@ export class ImageSearchComponent implements OnInit {
   onchange(files: FileList) {
     if (files.length > 0) {
       this.readPreview(files[0]);
+      this.currentFiles = files;
+    } else if (this.currentFiles) {
+      // use previous files for the case drag drop does not set files
+      files = this.currentFiles;
     }
 
     if (this.catId === undefined) {
