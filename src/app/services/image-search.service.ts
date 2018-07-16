@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Picture } from '../models/picture';
 import { SearchItemResponse } from '../models/search-item-response';
 import { MessageService } from './message.service';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.prod';
 
 declare function require(url: string);
 const default_response = require('../default_response.json');
